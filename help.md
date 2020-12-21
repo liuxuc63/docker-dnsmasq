@@ -21,3 +21,8 @@ The configuration is all handled on the command line (no wrapper scripts here). 
 As this is a very barebones entrypoint with just enough to run in the foreground, there is no logging enabled by default. To send logging to stdout you can add `--log-facility=-` as an option.
 
 [dnsmasq]: http://www.thekelleys.org.uk/dnsmasq/doc.html
+
+## Dnsmasq工作原理
+
+当接受到一个DNS请求时，Dnsmasq首先会查找/etc/hosts这个文件，然后查找/etc/resolv.conf中定义的外部DNS。Dnsmasq是一个很好的外部DNS中继。
+配置Dnsmasq为DNS缓存服务器，同时在/etc/hosts文件中加入本地内网解析，这样一来每当内网机器查询时就会优先查询hosts文件，这就等于将/etc/hosts共享给全内网机器使用，从而解决内网机器互相识别的问题。
